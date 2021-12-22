@@ -12,6 +12,7 @@ import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -88,6 +89,7 @@ public class MapsActivity extends Edge2EdgeActivity implements MapsImpl.UIImpl, 
 
     private BottomSheetBehavior mBottomSheet;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,6 +143,12 @@ public class MapsActivity extends Edge2EdgeActivity implements MapsImpl.UIImpl, 
             }
 
         }, 100));
+
+        mMap.setOnTouchListener((View view, MotionEvent motionEvent) -> {
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN)
+                mBottomSheet.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            return false;
+        });
 
         // Douglas-Peucker algorithm
         /*
