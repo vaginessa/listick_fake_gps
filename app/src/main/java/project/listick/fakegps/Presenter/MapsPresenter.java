@@ -45,10 +45,6 @@ import project.listick.fakegps.AsyncWebClient;
 import project.listick.fakegps.BuildRoute;
 import project.listick.fakegps.Contract.MapsImpl;
 import project.listick.fakegps.CurrentLocation;
-import project.listick.fakegps.Services.FixedSpooferService;
-import project.listick.fakegps.Services.ISpooferService;
-import project.listick.fakegps.Services.JoystickService;
-import project.listick.fakegps.Services.RouteSpooferService;
 import project.listick.fakegps.Enumerations.EDirectionService;
 import project.listick.fakegps.Enumerations.ERouteTransport;
 import project.listick.fakegps.FakeGPSApplication;
@@ -68,6 +64,10 @@ import project.listick.fakegps.PermissionManager;
 import project.listick.fakegps.R;
 import project.listick.fakegps.RouteManager;
 import project.listick.fakegps.RouteMarker.OriginAndDestMarker;
+import project.listick.fakegps.Services.FixedSpooferService;
+import project.listick.fakegps.Services.ISpooferService;
+import project.listick.fakegps.Services.JoystickService;
+import project.listick.fakegps.Services.RouteSpooferService;
 import project.listick.fakegps.SpoofingPlaceInfo;
 import project.listick.fakegps.UI.BookmarksActivity;
 import project.listick.fakegps.UI.EditTextDialog;
@@ -599,9 +599,6 @@ public class MapsPresenter implements MapsImpl.PresenterImpl {
                 break;
             case R.id.share_location:
                 handleShareLocation();
-                break;
-            case R.id.restore_location:
-                handleClear();
                 break;
             case R.id.about:
                 showAboutDialog();

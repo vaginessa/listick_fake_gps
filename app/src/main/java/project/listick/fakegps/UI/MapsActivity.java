@@ -44,7 +44,6 @@ import java.util.Locale;
 
 import project.listick.fakegps.AppPreferences;
 import project.listick.fakegps.Contract.MapsImpl;
-import project.listick.fakegps.Services.RouteSpooferService;
 import project.listick.fakegps.Enumerations.ERouteTransport;
 import project.listick.fakegps.ListickApp;
 import project.listick.fakegps.LocationOperations;
@@ -54,6 +53,7 @@ import project.listick.fakegps.PermissionManager;
 import project.listick.fakegps.Presenter.MapsPresenter;
 import project.listick.fakegps.Presenter.RouteSettingsPresenter;
 import project.listick.fakegps.R;
+import project.listick.fakegps.Services.RouteSpooferService;
 import project.listick.fakegps.SpoofingPlaceInfo;
 
 /*
@@ -74,6 +74,7 @@ public class MapsActivity extends Edge2EdgeActivity implements MapsImpl.UIImpl, 
     private MaterialButton mEditContainer;
     private MaterialButton mDoneContainer;
     private MaterialButton mAddMoreRoute;
+    private MaterialButton mRestoreLocation;
 
     private View mJoystickMessage;
     private MaterialButton mRemoveRoute;
@@ -108,6 +109,7 @@ public class MapsActivity extends Edge2EdgeActivity implements MapsImpl.UIImpl, 
         mDoneContainer = findViewById(R.id.start_spoofing);
         mEditContainer = findViewById(R.id.edit_button);
         mAddMoreRoute = findViewById(R.id.add_more_points);
+        mRestoreLocation = findViewById(R.id.restore_location_button);
 
         mJoystickMessage = findViewById(R.id.joystick_mode_message);
 
@@ -188,6 +190,7 @@ public class MapsActivity extends Edge2EdgeActivity implements MapsImpl.UIImpl, 
         mDoneContainer.setOnClickListener(v -> mPresenter.onSpoofClick(new GeoPoint(mMap.getMapCenter().getLatitude(), mMap.getMapCenter().getLongitude())));
         mStopContainer.setOnClickListener(view -> mPresenter.handleStop());
         mAddMoreRoute.setOnClickListener(view -> mPresenter.onAddMoreRoute(ActivityOptionsCompat.makeSceneTransitionAnimation(this, mSearchLayout, "whereTo")));
+        mRestoreLocation.setOnClickListener(v -> mPresenter.handleClear());
 
         getLocation.setOnClickListener(v -> mPresenter.onCurrentLocationClick());
         loading.setOnClickListener(v -> { });
@@ -236,10 +239,12 @@ public class MapsActivity extends Edge2EdgeActivity implements MapsImpl.UIImpl, 
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
                 getLocation.animate().translationY(1 - (slideOffset * 300)).setDuration(0).start();
                 mActiveRouteLayout.animate().alpha(0 + slideOffset).alpha(0+ slideOffset).setDuration(0).start();
+                mRestoreLocation.animate().alpha(0 + slideOffset).alpha(0+ slideOffset).setDuration(0).start();
             }
         });
         mBottomSheet.setState(BottomSheetBehavior.STATE_COLLAPSED);
         mActiveRouteLayout.setAlpha(0);
+        mRestoreLocation.setAlpha(0);
 
         mPresenter.onActivityLoad();
     }
