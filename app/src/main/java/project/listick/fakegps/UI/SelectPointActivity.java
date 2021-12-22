@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import project.listick.fakegps.AsyncGeocoder;
+import project.listick.fakegps.ImageUtils;
 import project.listick.fakegps.ListickApp;
 import project.listick.fakegps.MapLoader;
 import project.listick.fakegps.MapUtil;
@@ -187,8 +189,7 @@ public class SelectPointActivity extends Edge2EdgeActivity {
 
         RelativeLayout activityHeader = findViewById(R.id.header);
         RelativeLayout bar = findViewById(R.id.searchbar);
-        RelativeLayout bottomboardContainer = findViewById(R.id.bottomboard_container);
-        RelativeLayout bottomboard = findViewById(R.id.bottomboard);
+        LinearLayout bottomboardContainer = findViewById(R.id.bottomboard_container);
 
         TextView back = findViewById(R.id.back);
 
@@ -271,20 +272,15 @@ public class SelectPointActivity extends Edge2EdgeActivity {
         });
 
         int activityHeaderHeight = activityHeader.getLayoutParams().height;
-        int bottomboardContainerHeight = bottomboardContainer.getLayoutParams().height;
-
         ViewCompat.setOnApplyWindowInsetsListener(activityHeader, (v, insets) -> {
             int statusbarHeight = insets.getSystemWindowInsetTop();
             int navbarHeight = insets.getSystemWindowInsetBottom();
+            bottomboardContainer.setPadding(0, 0, 0, navbarHeight + (int) ImageUtils.convertDpToPixel(8.0f));
 
             activityHeader.getLayoutParams().height = activityHeaderHeight + statusbarHeight;
-            bottomboardContainer.getLayoutParams().height = bottomboardContainerHeight + navbarHeight;
 
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) bar.getLayoutParams();
             params.topMargin = statusbarHeight;
-            params = (ViewGroup.MarginLayoutParams) bottomboard.getLayoutParams();
-            params.bottomMargin = navbarHeight;
-
             return insets.consumeSystemWindowInsets();
         });
 

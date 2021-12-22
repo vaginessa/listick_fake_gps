@@ -58,11 +58,11 @@
                 android:layout_height="42dp"
                 android:layout_centerVertical="true"
                 android:drawableStart="@drawable/ic_route"
+                android:gravity="center_vertical"
                 android:maxLines="1"
                 android:padding="8dp"
                 android:paddingStart="8dp"
                 android:text="@string/where_to"
-                android:gravity="center_vertical"
                 android:textColor="@color/uicolor_text_high"
                 android:textSize="18sp" />
         </RelativeLayout>
@@ -206,7 +206,6 @@
         app:icon="@drawable/ic_baseline_restore_24"
         android:text="@string/restore_to_real_location"
         android:backgroundTint="@color/cardview_infobar"
-        android:layout_marginTop="8dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:textColor="@color/uicolor_text_high"

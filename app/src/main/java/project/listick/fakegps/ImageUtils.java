@@ -11,7 +11,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 /*
  * Created by LittleAngry on 18.02.19 (macOS 10.12)
  * */
-class ImageUtils {
+public class ImageUtils {
 
     /**
      * This method converts dp unit to equivalent pixels, depending on device density.

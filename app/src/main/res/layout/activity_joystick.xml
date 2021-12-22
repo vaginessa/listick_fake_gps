@@ -85,7 +85,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="36dp"
+        android:layout_height="42dp"
         android:layout_below="@id/speed_hint"
         android:layout_marginTop="5dp"
         android:drawablePadding="10dp">
@@ -94,7 +94,7 @@
             android:id="@+id/max_speed"
             style="@style/uisearchview"
             android:layout_width="match_parent"
-            android:layout_height="36dp"
+            android:layout_height="42dp"
             android:drawableStart="@drawable/speedometer"
             android:hint="@string/speed"
             android:inputType="number"

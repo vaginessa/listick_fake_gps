@@ -2,13 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:focusableInTouchMode="true">
 
 
     <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         android:background="@color/material_header"
         android:elevation="15dp">
 
@@ -23,6 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_marginBottom="2dp"
                 android:text="@string/enter_addr_or_coordinates" />
 
             <RelativeLayout
@@ -35,7 +37,7 @@
                     android:id="@+id/search_destination"
                     style="@style/uisearchview"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="42dp"
                     android:layout_centerInParent="true"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
@@ -73,41 +75,35 @@
 
     </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/bottomboard_container"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/material_header"
         android:elevation="15dp">
 
-        <RelativeLayout
-            android:id="@+id/bottomboard"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/back"
+            style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp">
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_alignParentStart="true"
+            android:layout_margin="8dp"
+            android:text="@string/back"
+            app:icon="@drawable/ic_arrow_back" />
 
-            <TextView
-                android:id="@+id/continue_action"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:padding="7dp"
-                android:text="@string/continue_text" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/continue_action"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"
+            android:text="@string/continue_text" />
 
-            <TextView
-                android:id="@+id/back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:padding="7dp"
-                android:text="@string/back" />
-        </RelativeLayout>
-    </RelativeLayout>
+    </LinearLayout>
 
 
 </RelativeLayout>
