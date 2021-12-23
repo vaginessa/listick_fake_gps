@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:text="@string/copyright"
             android:textColor="@color/uicolor_text_medium"
-            android:textSize="9sp"
+            android:textSize="@dimen/osm_copyright_text_size"
             app:layout_anchor="@id/bottom_sheet"
             android:paddingBottom="36dp"
             android:paddingStart="18dp"/>

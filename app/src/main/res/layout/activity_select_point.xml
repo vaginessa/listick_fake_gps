@@ -75,6 +75,18 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/copyright_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/copyright"
+        android:textColor="@color/uicolor_text_medium"
+        android:textSize="@dimen/osm_copyright_text_size"
+        android:layout_above="@id/bottomboard_container"
+        android:paddingBottom="8dp"
+        android:paddingStart="8dp"/>
+
+
     <LinearLayout
         android:id="@+id/bottomboard_container"
         android:layout_width="match_parent"
