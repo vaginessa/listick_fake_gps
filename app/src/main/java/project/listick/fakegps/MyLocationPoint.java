@@ -32,7 +32,7 @@ public class MyLocationPoint {
         try {
             mAccuracyPolygon.setPoints(Polygon.pointsAsCircle(myLocationPoint, accuracy));
             mapView.getOverlayManager().add(mAccuracyPolygon);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | NullPointerException e) {
             Log.e(TAG, null, e);
         }
 

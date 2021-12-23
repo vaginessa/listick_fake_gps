@@ -2,9 +2,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
-def appVersion = '2.7'
+def appVersion = '2.7.1'
 def mapsVersion = '6.1.11'
-def appVersionCode = 26
+def appVersionCode = 27
 
 android {
     compileSdkVersion 31
