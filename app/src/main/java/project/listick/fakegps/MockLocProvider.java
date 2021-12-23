@@ -51,7 +51,7 @@ public class MockLocProvider {
                         true, true, true, Criteria.POWER_LOW, Criteria.ACCURACY_COARSE);
                 locationManager.setTestProviderEnabled(NETWORK_PROVIDER, true);
 
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException | SecurityException e) {
                 android.util.Log.d(project.listick.fakegps.BuildConfig.APPLICATION_ID, null, e);
             }
             return;
@@ -148,7 +148,7 @@ public class MockLocProvider {
             try {
                 locationManager.removeTestProvider(GPS_PROVIDER);
                 locationManager.removeTestProvider(NETWORK_PROVIDER);
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException | SecurityException e) {
                 android.util.Log.d(project.listick.fakegps.BuildConfig.APPLICATION_ID, null, e);
             }
         }
