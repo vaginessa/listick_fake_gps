@@ -7,6 +7,7 @@ import android.location.Address;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -221,7 +222,6 @@ public class SelectPointActivity extends Edge2EdgeActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
                 timer.cancel();
                 timer = new Timer();
                 timer.schedule(new TimerTask() {
@@ -230,6 +230,8 @@ public class SelectPointActivity extends Edge2EdgeActivity {
                         if (s.toString().isEmpty())
                             return;
 
+
+                        Log.d("Autocomplete", "Geocode: " + s.toString());
                         promptsGeocoder.autocomplete(s.toString(), mapView.getMapCenter().getLatitude(),
                                 mapView.getMapCenter().getLongitude(), new AsyncGeocoder.Callback() {
                                     @Override
@@ -249,7 +251,7 @@ public class SelectPointActivity extends Edge2EdgeActivity {
 
                                             GeoPoint selectedPrompt = new GeoPoint(latitude, longitude);
                                             mapView.getController().animateTo(selectedPrompt, 17d, MapLoader.ZOOM_ANIMATION_SPEED);
-
+                                            promptsList.setVisibility(View.GONE);
                                         });
                                     }
 
@@ -260,7 +262,7 @@ public class SelectPointActivity extends Edge2EdgeActivity {
                                 });
 
                     }
-                }, 10L);
+                }, 500L);
 
 
             }
