@@ -195,5 +195,6 @@
     <string name="spoofing_preferences_title">Location spoofing preferences</string>
     <string name="measurement_title">Measurement</string>
     <string name="accuracy_title">Accuracy</string>
+    <string name="enter_valid_value">Please enter a valid value</string>
 
 </resources>

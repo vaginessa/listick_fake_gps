@@ -49,7 +49,7 @@ public class AppPreferences {
     }
 
     public static int getAccuracy(Context context){
-        return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context).getString(ListickApp.ACCURACY_SETTINGS, "10"));
+        return (int) Float.parseFloat(PreferenceManager.getDefaultSharedPreferences(context).getString(ListickApp.ACCURACY_SETTINGS, "10"));
     }
 
     public static String getMapsApiKey(Context context){

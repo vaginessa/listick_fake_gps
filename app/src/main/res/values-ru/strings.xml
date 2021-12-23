@@ -176,5 +176,6 @@
     <string name="spoofing_preferences_title">Параметры подмены</string>
     <string name="measurement_title">Измерения</string>
     <string name="accuracy_title">Точность</string>
+    <string name="enter_valid_value">Введите верное значение</string>
 
 </resources>

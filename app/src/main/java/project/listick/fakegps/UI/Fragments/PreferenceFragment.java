@@ -3,8 +3,12 @@ package project.listick.fakegps.UI.Fragments;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.text.method.DigitsKeyListener;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.preference.DropDownPreference;
 import androidx.preference.EditTextPreference;
@@ -26,10 +30,19 @@ public class PreferenceFragment extends PreferenceFragmentCompat {
             accuracySettingsPref.setOnBindEditTextListener(editText -> {
                 editText.setInputType(InputType.TYPE_CLASS_NUMBER);
                 editText.setKeyListener(DigitsKeyListener.getInstance("0123456789.,"));
+                editText.addTextChangedListener(getCommaReplacerTextWatcher(editText));
             });
 
+
             accuracySettingsPref.setOnPreferenceChangeListener((preference, newValue) -> {
-                preference.setSummary(newValue + " m.");
+                try {
+                    Float.parseFloat((String) newValue);
+                    preference.setSummary(newValue + " m.");
+                } catch (NumberFormatException e) {
+                    Toast.makeText(requireContext(), R.string.enter_valid_value, Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+
                 return true;
             });
 
@@ -42,10 +55,18 @@ public class PreferenceFragment extends PreferenceFragmentCompat {
             updatesDelayPref.setOnBindEditTextListener(editText -> {
                 editText.setInputType(InputType.TYPE_CLASS_NUMBER);
                 editText.setKeyListener(DigitsKeyListener.getInstance("0123456789.,"));
+                editText.addTextChangedListener(getCommaReplacerTextWatcher(editText));
             });
 
             updatesDelayPref.setOnPreferenceChangeListener((preference, newValue) -> {
-                preference.setSummary(newValue + " s.");
+                try {
+                    Float.parseFloat((String) newValue);
+                    preference.setSummary(newValue + " s.");
+                } catch (NumberFormatException e) {
+                    Toast.makeText(requireContext(), R.string.enter_valid_value, Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+
                 return true;
             });
         }
@@ -93,11 +114,25 @@ public class PreferenceFragment extends PreferenceFragmentCompat {
                 preference.setSummary(array.getString(Integer.parseInt(newValue.toString())));
                 return true;
             });
-
         }
+    }
 
 
+    private TextWatcher getCommaReplacerTextWatcher(EditText editText) {
+        return new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
 
-
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String text = editable.toString();
+                if (text.contains(",")) {
+                    editText.setText(text.replace(",", "."));
+                    editText.setSelection(editText.getText().length());
+                }
+            }
+        };
     }
 }
